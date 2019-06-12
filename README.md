@@ -26,6 +26,12 @@
     * Return take off time filter (00:00 to 24:00 time range slider) 
     * Airlines (as checkbox list) 
 
+#### Some Screenshots
+![alt text](https://github.com/gokhanakaraman/FlightSearch/blob/master/1.png)
+
+
+![alt text](https://github.com/gokhanakaraman/FlightSearch/blob/master/2.png)
+
 # `angular-seed` — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS][angularjs] web app. You can use it
