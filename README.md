@@ -21,6 +21,7 @@
     * Sorting by total duration 
 
  > The UI also supports 3 filter options: 
+ 
     * Departure take off time filter (00:00 to 24:00 time range slider) 
     * Return take off time filter (00:00 to 24:00 time range slider) 
     * Airlines (as checkbox list) 
