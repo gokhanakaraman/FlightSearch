@@ -1,3 +1,30 @@
+# An Angular(v4.4.6) tutorial project. Flight Search Results Screen
+
+ > Search, sort and filter flights.The flight simulation data can be found in “flightData.json” and it will be used as if it was received from the backend server.  
+
+>The data consists of hundreds of different flights from Istanbul to New York. The flight template in the codepen website above displays several information about the flight including:  
+
+> * departure city
+  * arrival city
+  * departure airport
+  * arrival airport
+  * departure date
+  * arrival date
+  * marketing airlines (on top)
+  * operating airlines (as operator)
+  * flight
+  * class (single letter class info in the json, displayed as Class: “M”) 
+
+ >The UI supports 2 sorting options: 
+
+  > * Sorting by price
+    * Sorting by total duration 
+
+ > The UI also supports 3 filter options: 
+    * Departure take off time filter (00:00 to 24:00 time range slider) 
+    * Return take off time filter (00:00 to 24:00 time range slider) 
+    * Airlines (as checkbox list) 
+
 # `angular-seed` — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS][angularjs] web app. You can use it
