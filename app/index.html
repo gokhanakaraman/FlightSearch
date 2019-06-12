@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Flight Search</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+</head>
+<body  ng-controller="CardCtrl" >
+  <div class="container">
+  <div class="row">
+  <div class="col-12 col-md-12 mainBar center">
+    <div class="col-md-12 directionDiv">
+      <label class="radio-inline"><input type="radio" checked="checked" ng-click="whichWay(1)" name="optradioReturn">Return</label>
+      <label class="radio-inline"><input type="radio" ng-click="whichWay(0)" name="optradioReturn">One Way</label>
+    </div>
+    <div class="form-group">
+      <label for="dtp_input2" class="col-md-2 control-label center">From</label>
+      <div class="col-md-4 center" id="from">
+        <select class="selectFrom" ng-model="selectedFrom"  ng-options="airport.airport for airport in airports" >
+        </select>
+      </div>
+      <input type="hidden" id="dtp_input2" value="" />
+      <label for="dtp_input2" class="col-md-2 control-label center">To</label>
+      <div class="col-md-4 center" id="to">
+        <select class="selectTo" ng-model="selectedTo" ng-options="airport.airport for airport in airports">
+        </select>
+      </div>
+      <input type="hidden" id="dtp_input3" value="" /><br/>
+    </div></br>
+    <div class="form-group" style="float:left;">
+      <label for="dtp_input2" class="col-md-2 control-label center">Departure Date</label>
+      <div class="input-group date form_date col-md-4"  id="departureDate" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+          <input class="form-control" onchange="angular.element(this).scope().departureChanged()" id="departureDateVal" size="16" type="text" readonly>
+          <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+      <input type="hidden" id="dtp_input2" value="" />
+      <label for="dtp_input2" class="col-md-2 control-label center">Return Date</label>
+      <div  class="input-group date form_date col-md-4" id="returnDate"  data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+          <input class="form-control" size="16" onchange="angular.element(this).scope().returnChanged()" id="returnDateVal" type="text" value="" readonly>
+          <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+      <input type="hidden" id="dtp_input3" value="" /><br/>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row bigContent">
+      <div class="col-12 col-md-4 sidebar">
+                  <div class="row">
+                          <div class="col-sm-12 col-md-12">
+                              <a style="margin-bottom: 10px;" href="" class="btn btn-success btn-block btn-compose-email">Filter & Sort</a>
+                              <div class="panel panel-default">
+                      			<div class="panel-heading">
+                  					<h3 class="panel-title">Filter by Price</h3>
+                  				</div>
+                          <div class="col-md-12 directionDiv">
+                            <label class="radio-inline"><input type="radio" name="optradioPrice" ng-click="priceValue = '-price'" >Decreasing</label>
+                            <label class="radio-inline"><input type="radio" name="optradioPrice"  checked="checked"  ng-click="priceValue = 'price'">Increasing</label>
+                          </div>
+                  			</div>
+                              <div class="panel panel-default">
+                          		<div class="panel-heading">
+                  					<h3 class="panel-title">Filter by Total Flight Duration</h3>
+                  				</div>
+                          <div class="col-md-12 directionDiv">
+                            <label class="radio-inline"><input type="radio"  ng-click="durationValue = '-departureFlightDuration'"  name="optradioDuration">Decreasing</label>
+                            <label class="radio-inline"><input type="radio" checked="checked" name="optradioDuration" ng-click="durationValue = 'departureFlightDuration'" >Increasing</label>
+                          </div>
+                  			</div>
+                          </div>
+                          <div id="time-range">
+                                <p>Departure take off : <span class="slider-time">00:00</span> - <span class="slider-time2">24:00</span></p>
+                                <div class="sliders_step1">
+                                   <div id="slider-range"></div>
+                               </div>
+                          </div>
+                          <div id="time-range1">
+                                <p>Return  take off : <span class="slider-time1">00:00</span> - <span class="slider-time3">24:00</span></p>
+                                <div class="sliders_step1">
+                                   <div id="slider-range1"></div>
+                               </div>
+                          </div>      <h2>Airlines</h2>
+                          <div class="row">
+                            <div  class="col-sm-3 col-md-8">
+                              <div  style="padding-left: 40px; margin-top: 20px; !important" class="checkbox checkbox-warning">
+                                <span ng-repeat="airline in airlines">
+                                    <div  class="col-sm-3 col-md-4">
+                                    <input type="checkbox" value="{{airline}}" onclick="angular.element(this).scope().airlineSelect(this)" name="group" id="{{airline}}" />
+                                  <label  class="checkbox" for="{{airline}}">
+                                  {{airline}}
+                                </label>
+                              </div>
+                                </span>
+                              </div>
+                        </div>
+                        </div>
+                      </div>
+      </div>
+      <div class="col-12 col-md-8 content"><div ng-view></div></div>
+    </div>
+  </div>
+  </div>
+</div>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="card/card.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+  <script type="text/javascript" src="js/jquery-1.8.3.min.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.tr.js" charset="UTF-8"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+
+  <script  src="js/index.js"></script>
+  <script type="text/javascript">
+  $('.form_date').datetimepicker({
+      language:  'en',
+      weekStart: 1,
+      todayBtn:  1,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      minView: 2,
+      forceParse: 0
+    }) ;
+  </script>
+</body>
+</html>

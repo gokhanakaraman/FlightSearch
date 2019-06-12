@@ -1,0 +1,91 @@
+<div ng-repeat="card in cards | orderBy:priceValue | orderBy:durationValue | filter:departureDate | filter: airlineFilter | filter:returnDate | filter : selectedTo.airport | filter : selectedFrom.airport" class="card">
+<div class='flight-card'>
+ <div class='flight-card--header'>
+   <div class='flight-card--header-logo'>
+    <!-- <img src='https://book.jetblue.com/assets/header/img/jetblue-white-reg.png'>-->
+    {{card.departure[0].marketingAirlineCode}}
+   </div>
+   <div class='flight-card--header-details'>
+     <div class='details-passenger'>
+       <span class='detail--title'>
+        Total Price
+       </span>
+       <span class='detail--text'>
+        {{card.price.itinerary.totalFare}} {{card.currency}}
+       </span>
+     </div>
+     <div class='details-depart'>
+       <span class='detail--title'>
+         Departs
+       </span>
+       <span class='detail--text'>
+         {{card.departure[0].departureDateTime}}
+       </span>
+     </div>
+     <div class='details-arrive'>
+       <span class='detail--title'>
+         Arrives
+       </span>
+       <span class='detail--text'>
+         {{card.departure[0].arrivalDateTime}}
+       </span>
+     </div>
+   </div>
+ </div>
+ <div class='flight-card--details'>
+   <div class='bc-from'>
+     <span class='detail-code'>
+        {{card.departure[0].from}}
+     </span>
+     <span class='detail-city'>
+       {{responseApi[0].label}}
+     </span>
+   </div>
+   <div class='bc-plane'>
+     <img src='https://cdn.onlinewebfonts.com/svg/img_537856.svg'>
+   </div>
+   <div class='bc-to'>
+     <span class='detail-code'>
+      {{card.departure[card.departure.length-1].to}}
+     </span>
+     <span class='detail-city'>
+       Providence, Rhode Island
+     </span>
+   </div>
+   <div class='flight-card-details--text'>
+     <div class='text-left'>
+       <span class='text-hline'>
+         Operator
+       </span>
+       <span class='text-actual'>
+        {{card.departure[0].operatingAirlineCode}}
+       </span>
+     </div>
+     <div class='text-middle'>
+       <span class='text-hline'>
+         Flight
+       </span>
+       <span class='text-actual'>
+          {{card.departure[0].flightNumber}}
+       </span>
+     </div>
+     <div class='text-right'>
+       <span class='text-hline'>
+         Class
+       </span>
+       <span class='text-actual mint'>
+         {{card.departure[0].cabinClassInfo[0].class}}
+       </span>
+     </div>
+   </div>
+   <div class='flight-card-details--admin'>
+     <div class='admin-left'>
+       PVD-SFO FUN 2017 - A321
+     </div>
+     <div class='admin-right'>
+       Flight Duration : {{card.departureFlightDuration}}
+     </div>
+   </div>
+ </div>
+</div>
+</div>
