@@ -2,9 +2,9 @@
 
  > Search, sort and filter flights.The flight simulation data can be found in “flightData.json” and it will be used as if it was received from the backend server.  
 
->The data consists of hundreds of different flights from Istanbul to New York. The flight template in the codepen website above displays several information about the flight including:  
+> The data consists of hundreds of different flights from Istanbul to New York. The flight template in the codepen website above displays several information about the flight including:  
 
-> * departure city
+  * departure city
   * arrival city
   * departure airport
   * arrival airport
@@ -17,7 +17,7 @@
 
  >The UI supports 2 sorting options: 
 
-  > * Sorting by price
+    * Sorting by price
     * Sorting by total duration 
 
  > The UI also supports 3 filter options: 
