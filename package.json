@@ -7,7 +7,7 @@
   "license": "MIT",
   "devDependencies": {
     "@angular/cli": "^1.4.9",
-    "bower": "^1.7.7",
+    "bower": "^1.8.8",
     "http-server": "^0.9.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
